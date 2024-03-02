@@ -10,7 +10,7 @@ session = boto3.Session(
 def transcribe_video(bucket_name, object_key, language_code='en-US'):
     transcribe = session.client('transcribe', region_name='ap-southeast-2')
 
-    job_name = "transcribe-job"
+    job_name = "job"
 
     response = transcribe.start_transcription_job(
         TranscriptionJobName=job_name,
@@ -35,6 +35,7 @@ def transcribe_video(bucket_name, object_key, language_code='en-US'):
 
     else:
         print("Transcription failed.")
+
 
 def extract_text(filename):
     response = urlopen(filename)
