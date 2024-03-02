@@ -1,4 +1,5 @@
 import boto3
+
 import logging
 import os
 from botocore.exceptions import ClientError
@@ -8,6 +9,7 @@ import requests
 
 filename = "TestingVoice.mp4"
 bucket_name = "videos-lecture-helper"
+
 
 session = boto3.Session(
     aws_access_key_id='AKIATCKAOOBQCFQWP25S',
@@ -30,6 +32,7 @@ def transcribe_video(filename, language_code='en-US'):
     transcribe = session.client('transcribe', region_name='ap-southeast-2')
     job_name = filename + str(time.time())
 
+
     response = transcribe.start_transcription_job(
         TranscriptionJobName=job_name,
         LanguageCode=language_code,
@@ -48,6 +51,7 @@ def transcribe_video(filename, language_code='en-US'):
         response = transcribe.get_transcription_job(TranscriptionJobName=job_name)
         transcription_result = response['TranscriptionJob']['Transcript']['TranscriptFileUri']
         print("Transcription successful. Transcript file URI:", transcription_result)
+
         return transcription_result
     else:
         print("Transcription failed.")
@@ -66,4 +70,3 @@ def run(filename):
 # upload_file(file_name="testingUpload3.txt")
 # transcribe_video(bucket_name, object_key)
 run(filename)
-
