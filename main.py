@@ -6,6 +6,7 @@ from botocore.exceptions import ClientError
 import time
 import json
 import requests
+from confluence import uploadTranscript
 
 filename = "TestingVoice.mp4"
 bucket_name = "videos-lecture-helper"
@@ -61,12 +62,22 @@ def extract_text(uri):
     response = requests.get(uri).json()
     print("extracted transcript: ", response["results"]["transcripts"][0]['transcript'])
 
+def upload_text(uri, filename):
+    response = requests.get(uri).json()
+    transcript = response["results"]["transcripts"][0]['transcript']
+    uploadTranscript(filename, transcript)
+
 def run(filename):
     upload_file(filename)
     result = transcribe_video(filename)
     if result:
-        extract_text(result)
+        upload_text(result, filename)
+
+    
+
+    
 
 # upload_file(file_name="testingUpload3.txt")
 # transcribe_video(bucket_name, object_key)
-run(filename)
+# run(filename)
+run("lecture4softwareprocesses.mp4")
