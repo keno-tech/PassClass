@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, render_template
 import os
 from werkzeug.utils import secure_filename
+from main import run  # Import the run function from your main script
 
 app = Flask(__name__)
 
@@ -24,6 +25,7 @@ def homepage():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            run(os.path.join(app.config['UPLOAD_FOLDER'], filename))  # Call run function here with the uploaded file
             return jsonify({"message": "File uploaded successfully", "filename": filename}), 201
         else:
             return jsonify({"error": "Invalid file format"}), 400
@@ -38,7 +40,7 @@ def process_file():
     if not os.path.exists(os.path.join(app.config['UPLOAD_FOLDER'], filename)):
         return jsonify({"error": "File not found"}), 404
 
-    from main import run
+    # Call the run function with the uploaded file path
     run(os.path.join(app.config['UPLOAD_FOLDER'], filename))
     
     return jsonify({"message": "Processing initiated"}), 200
