@@ -17,9 +17,9 @@ def uploadTranscript(title, new_content):
     # Add check to see if the page exists
     check_url = f'{confluence_base_url}/rest/api/content?title={title}&spaceKey=TEAM&expand=version'
     check_response = requests.get(check_url, headers=headers, auth=auth)
-    check_data = check_response.json()['results'][0]
     page_exists = False
-    if check_response.json()['size'] > 0:
+    if check_response.json()['size'] > 0 and len(check_response.json()['results']) > 0:
+        check_data = check_response.json()['results'][0]
         page_exists = True
 
     if page_exists:

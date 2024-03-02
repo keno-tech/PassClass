@@ -1,5 +1,5 @@
 import boto3
-
+import re
 import logging
 import os
 from botocore.exceptions import ClientError
@@ -32,6 +32,8 @@ def upload_file(filename):
 def transcribe_video(filename, language_code='en-US'):
     transcribe = session.client('transcribe', region_name='ap-southeast-2')
     job_name = filename + str(time.time())
+    # Replace all periods to fit into regex requirements
+    job_name = re.sub(r'[^a-zA-Z0-9_-]', '_', job_name)
 
 
     response = transcribe.start_transcription_job(
@@ -80,4 +82,4 @@ def run(filename):
 # upload_file(file_name="testingUpload3.txt")
 # transcribe_video(bucket_name, object_key)
 # run(filename)
-run("lecture4softwareprocesses.mp4")
+run("uploads/TestingVoice.mp4")
