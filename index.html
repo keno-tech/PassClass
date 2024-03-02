@@ -2,14 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Transcription</title>
+    <link rel= stylesheet href="./css/styles.css">
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
+    <title>Lecture Helper</title>
 </head>
 <body>
-    <h1>Upload Your Video for Transcription</h1>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="videoFile" accept="video/*">
-        <input type="submit" value="Upload">
-    </form>
+    <header>
+        <h1>Lecture Helper</h1>
+        <div class="account">
+            <p>SIGN UP</p>
+            <p>LOGIN IN</p>
+        </div>
+    </header>
+    <div class="intro">
+        <div class="intro-text">
+            <h2>Lectures enhanced</h2>
+            <p>PRODUCTNAME transforms your lecture videos and slides into your personal database</p>
+        </div>
+        <div class="drag-and-drop">
+            <h1>Try now!</h1>
+            <form action="/target" class="dropzone" id="mydz">
+            </form>
+            <script type="text/javascript">
+            Dropzone.options.mydz = {
+                dictDefaultMessage: "Choose a file or drag it here"
+            };
+
+            </script>
+            <button class="button-31" role="button">Enhance Content</button>
+        </div>
+    </div>
 </body>
 </html>
