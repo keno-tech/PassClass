@@ -1,4 +1,6 @@
 import boto3
+from urllib.request import urlopen
+import json
 
 session = boto3.Session(
     aws_access_key_id='AKIATCKAOOBQCFQWP25S',
@@ -29,9 +31,17 @@ def transcribe_video(bucket_name, object_key, language_code='en-US'):
         response = transcribe.get_transcription_job(TranscriptionJobName=job_name)
         transcription_result = response['TranscriptionJob']['Transcript']['TranscriptFileUri']
         print("Transcription successful. Transcript file URI:", transcription_result)
+        return transcription_file_uri
+
     else:
         print("Transcription failed.")
+
+def extract_text(filename):
+    response = urlopen(filename)
+    data = json.loads(response.read())
+    print(data["results"]["transcripts"][0]['transcript'])
 
 bucket_name = "videos-lecture-helper"
 object_key = "COMP30024_2024_SM1 T-audio.mp3"
 transcribe_video(bucket_name, object_key)
+extract_text(transcribe_video(bucket_name, object_key))
