@@ -1,0 +1,101 @@
+html {
+    height: 100%;
+    width: 100%;
+    font-family: Inter;
+}
+
+body {
+    height: 100%;
+    width: inherit;
+    margin: 0%;
+}
+
+header {
+    height: 10%;
+    background-image: linear-gradient(#035973, #1D90B4);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding: 0% 5%;
+}
+
+.account {
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.intro {
+    height: 80%;
+    background-color: #1D90B4;
+    background-image: url(../Blue\ Gradient\ Photo.jpg);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.intro-text {
+    width: 50%;
+    color: white;
+    margin: 5%;
+}
+
+.intro-text h2 {
+    font-size: 5rem;
+}
+
+.drag-and-drop {
+    width: 30%;
+    margin: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.dropzone {
+    height: 70%;
+    width: 100%;
+    border-radius: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border:#222 2px dashed;
+}
+
+/* CSS */
+.button-31 {
+  background-color: #222;
+  border-radius: 4px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Farfetch Basis","Helvetica Neue",Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin: 0;
+  max-width: none;
+  min-height: 44px;
+  min-width: 10px;
+  outline: none;
+  overflow: hidden;
+  padding: 9px 20px 8px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100%;
+}
+
+.button-31:hover,
+.button-31:focus {
+  opacity: .75;
+}
