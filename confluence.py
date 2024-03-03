@@ -1,9 +1,13 @@
 import requests
 import json
+import os
 
+from dotenv import load_dotenv
+load_dotenv()
+
+apiToken = os.getenv('apiToken')
+email = os.getenv('email')
 confluence_base_url = 'https://unihack-lecture.atlassian.net/wiki'
-apiToken = 'ATATT3xFfGF0sVeg6ZJQhIpvmllwTYzixrKqv4W7rPEPRUR2mRqsNSBDjbyMWsLuqw-R53kuKqCo_eBFcFmcqFxSh9m0RwvmKgbZWEQhBefUk1wxM3vBOD08T6NklRAhka5tf_kyu3u5mDIoTtEbZvEvT9B4ZPvDS-ylJDUVtq8a3pJ4MNfO8qw=9024E2C2'
-email = 'hyzhou@student.unimelb.edu.au'
 
 auth = (email, apiToken)
 headers = {
@@ -11,10 +15,7 @@ headers = {
 }
 
 
-
-
 def uploadTranscript(title, new_content):
-    # Add check to see if the page exists
     check_url = f'{confluence_base_url}/rest/api/content?title={title}&spaceKey=TEAM&expand=version'
     check_response = requests.get(check_url, headers=headers, auth=auth)
     page_exists = False
@@ -23,7 +24,6 @@ def uploadTranscript(title, new_content):
         page_exists = True
 
     if page_exists:
-        # Update the data, increase version number
         page_id = check_data['id']
         current_version = check_data['version']['number']
         new_url = f'{confluence_base_url}/rest/api/content/{page_id}'
@@ -41,7 +41,6 @@ def uploadTranscript(title, new_content):
         }
         response = requests.put(new_url, data=json.dumps(data), headers=headers, auth=auth)
     else:
-        # Simply create data without version number
         data = {
             'type': 'page',
             'title': title,

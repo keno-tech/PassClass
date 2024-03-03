@@ -10,10 +10,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
     <title>Lecture Helper</title>
     <style>
-        /* Define your loading animation styles here */
         .loader {
-            border: 16px solid #f3f3f3; /* Light grey */
-            border-top: 16px solid #3498db; /* Blue */
+            border: 16px solid #f3f3f3; 
+            border-top: 16px solid #3498db; 
             border-radius: 50%;
             width: 120px;
             height: 120px;
@@ -40,7 +39,7 @@
 </head>
 <body>
     <header>
-        <h1>Lecture Helper</h1>
+        <h1>PassClass</h1>
         <div class="account">
             <p>SIGN UP</p>
             <p>LOGIN IN</p>
@@ -49,10 +48,10 @@
     <div class="intro">
         <div class="intro-text">
             <h2>Lectures enhanced</h2>
-            <p>PRODUCTNAME transforms your lecture videos and slides into your personal database</p>
+            <p>PassClass transforms your lecture videos and slides into your personal database</p>
         </div>
         <div class="drag-and-drop">
-            <h1>Try now!</h1>
+            <h1>Try now! for free!</h1>
             <form action="/" class="dropzone" id="mydz">
             </form>
             <script type="text/javascript">
@@ -75,20 +74,15 @@
 
     <script>
        document.getElementById('enhanceButton').addEventListener('click', function() {
-        // Show loading animation when button is clicked
         document.getElementById('loading').classList.remove('hidden');
         
-        // Simulate enhancement process with a setTimeout, replace with actual enhancement logic
         setTimeout(function() {
-            // Hide loading animation when enhancement is complete
             document.getElementById('loading').classList.add('hidden');
-            // Show success message
             document.getElementById('successMessage').classList.remove('hidden');
-            // Redirect to /notes after success
             setTimeout(function() {
                 window.location.href = '/notes';
-            }, 1000); // Redirect after 1 second
-        }, 3000); // Simulate enhancement process taking 3 seconds
+            }, 1000); 
+        }, 3000); 
     });
     </script>
 </body>

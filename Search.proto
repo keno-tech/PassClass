@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package redactive.grpc.v1;
+
+import "google/protobuf/struct.proto";
+import "chunks.proto";
+
+service Search {
+    // Query the index for relevant chunks
+    rpc QueryChunks(QueryRequest) returns (QueryResponse);
+}
+
+message Query {
+    // Semantic query to execute
+    string semantic_query = 1;
+}
+
+message QueryRequest {
+    // How many results to try to return (maximum number of results)
+    optional uint32 count = 1;
+    // The query to execute
+    Query query = 2;
+}
+
+message QueryResponse {
+    // Query was successful
+    bool success = 1;
+    // Error message if query failed
+    optional google.protobuf.Struct error = 2;
+    // List of relevant chunks
+    repeated RelevantChunk relevant_chunks = 3;
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #1D90B4, #2e6da4);
+
+            background-color: rgb(12, 157, 206);
+            color: white;
+        }
+        
+        .summary, .query-box, .quiz-box {
+            padding: 20px;
+            box-sizing: border-box; /* Ensure padding is included in width calculation */
+        }
+
+        .summary {
+            width: 30%;
+            float: left;
+        }
+
+        .query-box {
+            width: 40%;
+            float: left;
+        }
+
+        .quiz-box {
+            width: 30%;
+            float: left;
+        }
+
+        /* Clearfix to prevent floats from collapsing */
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        /* Adjust quiz box style */
+        .quiz-box ol {
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col summary">
+                <h2>Summary</h2>
+                <ul>
+                </ul>
+            </div>
+            <div class="col query-box">
+                <h2>Query Box</h2>
+                <form action="/query" method="post">
+                    <div class="form-group">
+                        <label for="query">Enter your query:</label>
+                        <input type="text" class="form-control" id="query" name="query">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <p>{{ query }}</p>
+                    <p>{{ transcript }}</p>
+                </form>
+            </div>
+            <div class="col quiz-box">
+                <h2>Quiz Me!</h2>
+                <ol>
+                </ol>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
