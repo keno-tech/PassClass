@@ -32,6 +32,12 @@ def homepage():
     else:
         return render_template('index.html')
 
+
+@app.route('/notes')
+def notes():
+    # Render the notes page template here
+    return render_template('notes.html')
+    
 @app.route('/process', methods=['POST'])
 def process_file():
     if 'filename' not in request.json:
